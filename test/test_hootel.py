@@ -1,9 +1,13 @@
 import time
+from asyncio import Condition
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import allure
+from selenium.webdriver.support import expected_conditions as EC
 import pytest
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestHootel(object):
@@ -39,7 +43,8 @@ class TestHootel(object):
         submit_btn.click()
         time.sleep(1)
 
-        logout_btn = self.browser.find_element(By.ID, 'logout-link')
+        logout_btn = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located((By.ID, 'logout-link')))
+        # self.browser.find_element(By.ID, 'logout-link'))
 
         assert logout_btn.text == "Kilépés"
 
