@@ -21,7 +21,6 @@ class TestHootel(object):
         self.browser.get(URL)
         self.browser.set_window_size(1920, 1080)
 
-
     def teardown_method(self):
         self.browser.quit()
 
